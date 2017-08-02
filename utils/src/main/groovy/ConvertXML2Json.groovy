@@ -1,3 +1,8 @@
+import java.awt.Toolkit
+import java.awt.datatransfer.Clipboard
+import java.awt.datatransfer.DataFlavor
+import java.awt.datatransfer.StringSelection
+
 println()
 println "*********************** "
 println "*** ConvertXML2Json *** "
@@ -22,6 +27,7 @@ println()
 println "Base64"
 String encoded = data.toString().bytes.encodeBase64().toString()
 println encoded;
+ClipboardUtils.setClipboardContents(encoded);
 
 
 View createView (node) {
@@ -139,4 +145,16 @@ class Property {
     String name
     String type
     String value
+}
+
+class ClipboardUtils{
+    static final Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard()
+
+    static void setClipboardContents(final String contents){
+        clipboard.setContents(new StringSelection(contents), null)
+    }
+
+    static String getClipboardContents(){
+        return clipboard.getContents(null).getTransferData(DataFlavor.stringFlavor)
+    }
 }
