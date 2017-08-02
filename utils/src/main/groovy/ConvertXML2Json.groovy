@@ -13,8 +13,16 @@ if (!inputFile.exists()) {
 }
 
 def layout = new XmlParser().parse(inputFile)
+String data=new groovy.json.JsonBuilder( createView(layout) ).toString()
+println "JSON"
+println data;
+println()
+println()
 
-println new groovy.json.JsonBuilder( createView(layout) ).toString();
+println "Base64"
+String encoded = data.toString().bytes.encodeBase64().toString()
+println encoded;
+
 
 View createView (node) {
 
