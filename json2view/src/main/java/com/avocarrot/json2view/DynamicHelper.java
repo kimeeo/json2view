@@ -1,9 +1,12 @@
 package com.avocarrot.json2view;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -170,6 +173,10 @@ public class DynamicHelper {
                 break;
                 case VISIBILITY:{
                     applyVisibility(view, dynProp);
+                }
+                break;
+                case ELEVATION:{
+                    applyElevation(view, dynProp);
                 }
                 break;
             }
@@ -563,6 +570,27 @@ public class DynamicHelper {
                     view.setScaleY(property.getValueFloat());
                 }
                 break;
+            }
+        }
+    }
+
+    /**
+     * apply selected in view
+     */
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void applyElevation(View view, DynamicProperty property) {
+        if (view != null) {
+            switch (property.type) {
+                case DIMEN: {
+                    view.setElevation(dpToPx(property.getValueFloat()));
+                }
+                break;
+                case INTEGER: {
+                    view.setElevation(dpToPx(property.getValueInt()));
+                }
+                break;
+
             }
         }
     }

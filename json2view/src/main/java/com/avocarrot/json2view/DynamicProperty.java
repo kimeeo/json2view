@@ -68,6 +68,8 @@ public class DynamicProperty {
         MINWIDTH,
         MINHEIGTH,
         VISIBILITY,
+        ELEVATION,
+
         /* textView */
         TEXT,
         TEXTCOLOR,
