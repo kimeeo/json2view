@@ -81,6 +81,7 @@ Property createProperty (attribute) {
         case "TEXTCOLOR":
             type = "color";
             break;
+        case "ELEVATION":
         case "LAYOUT_WIDTH":
         case "LAYOUT_HEIGHT":
         case "PADDING_LEFT":
